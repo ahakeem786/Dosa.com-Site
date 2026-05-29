@@ -28,224 +28,110 @@ body {
   color: var(--text);
   background: var(--cream);
   line-height: 1.6;
+  padding-bottom: 36px;
 }
 
 .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-/* Header */
-.site-header {
-  background: linear-gradient(135deg, var(--saffron) 0%, var(--deep-red) 100%);
-  color: var(--white);
-  padding: 36px 20px 28px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.site-header::before {
-  content: '';
-  position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
-  animation: shimmer 6s infinite;
-}
-@keyframes shimmer {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(20px, 10px); }
-}
-.site-header h1 {
-  font-size: 3.2rem;
-  letter-spacing: 2px;
-  position: relative;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
-}
-.site-header .tagline {
-  font-size: 1.1rem;
-  font-style: italic;
-  margin-top: 6px;
-  position: relative;
-  color: var(--turmeric-light);
-  letter-spacing: 0.5px;
-}
-
-/* Nav */
-.nav-bar {
-  background: var(--dark);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-}
-.nav-bar .container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.nav-bar a {
+/* ── FIXED TICKER SCROLLER ── */
+.ticker-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg, var(--deep-red) 0%, var(--saffron-dark) 100%);
   color: var(--turmeric);
-  text-decoration: none;
-  padding: 14px 20px;
-  font-size: 0.95rem;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  transition: background 0.25s, color 0.25s;
-}
-.nav-bar a:hover {
-  background: var(--saffron);
-  color: var(--white);
-}
-
-/* Hero */
-.hero {
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.55)),
-              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"><rect fill="%23E8681C" width="400" height="200"/><circle cx="100" cy="100" r="60" fill="%23F5B717" opacity="0.5"/><circle cx="300" cy="100" r="70" fill="%23A31A1A" opacity="0.4"/><circle cx="200" cy="50" r="40" fill="%23FFD700" opacity="0.3"/></svg>');
-  background-size: cover;
-  background-position: center;
-  color: var(--white);
-  text-align: center;
-  padding: 90px 20px;
-}
-.hero h2 {
-  font-size: 2.6rem;
-  margin-bottom: 14px;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-}
-.hero p {
-  font-size: 1.2rem;
-  max-width: 600px;
-  margin: 0 auto;
-  opacity: 0.95;
-}
-.hero .btn {
-  display: inline-block;
-  margin-top: 24px;
-  padding: 12px 36px;
-  background: var(--saffron);
-  color: var(--white);
-  text-decoration: none;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: background 0.3s, transform 0.2s;
-}
-.hero .btn:hover {
-  background: var(--saffron-dark);
-  transform: scale(1.05);
-}
-
-/* Section titles */
-section { padding: 60px 0; }
-.section-title {
-  text-align: center;
-  font-size: 2rem;
-  color: var(--deep-red);
-  margin-bottom: 36px;
-  position: relative;
-}
-.section-title::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 4px;
-  background: var(--saffron);
-  margin: 10px auto 0;
-  border-radius: 2px;
-}
-
-/* Menu */
-#menu { background: var(--white); }
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 12px;
-}
-.menu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 18px;
-  border-bottom: 1px dashed var(--turmeric-light);
-  transition: background 0.2s;
-}
-.menu-item:hover { background: var(--cream); }
-.menu-item .name { font-weight: bold; font-size: 0.95rem; }
-.menu-item .price {
-  color: var(--saffron);
-  font-weight: bold;
-  font-size: 1.05rem;
-  white-space: nowrap;
-  margin-left: 12px;
-}
-
-/* Gallery */
-#gallery { background: var(--cream); }
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-.gallery-grid .card {
-  background: var(--white);
-  border-radius: 10px;
+  z-index: 9999;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
 }
-.gallery-grid .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
-}
-.gallery-grid img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  display: block;
-}
-.gallery-grid .card p {
-  padding: 12px 16px;
+.ticker-label {
+  background: var(--turmeric);
+  color: var(--dark);
   font-weight: bold;
-  color: var(--deep-red);
-  text-align: center;
-  font-size: 0.95rem;
+  font-size: 0.78rem;
+  padding: 0 14px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
 }
-
-/* Visit Us */
-#visitus { background: var(--white); }
-.visit-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
+.ticker-content {
+  display: flex;
+  overflow: hidden;
+  flex: 1;
+  height: 100%;
   align-items: center;
 }
-.visit-content img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+.ticker-text {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+  animation: ticker-scroll 22s linear infinite;
+  padding-left: 100%;
 }
-.visit-info h3 {
-  color: var(--deep-red);
-  font-size: 1.4rem;
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.ticker-text span { margin: 0 40px; color: var(--white); }
+.ticker-text span::before { content: "✦"; margin-right: 10px; color: var(--turmeric); }
+
+/* ── LOGIN GATE ── */
+#login-gate {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--saffron) 0%, var(--deep-red) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px 60px;
+  text-align: center;
+}
+.login-logo {
   margin-bottom: 10px;
 }
-.visit-info p {
-  color: var(--text-light);
-  margin-bottom: 8px;
+.login-logo h1 {
+  font-size: 3.2rem;
+  color: var(--white);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+.login-logo p {
   font-size: 1rem;
+  font-style: italic;
+  color: var(--turmeric-light);
+  margin-top: 6px;
+  letter-spacing: 0.5px;
 }
-
-/* Register / Login */
-#register { background: linear-gradient(135deg, var(--deep-red) 0%, var(--saffron-dark) 100%); }
-#register .section-title { color: var(--white); }
-#register .section-title::after { background: var(--turmeric); }
-.form-card {
-  max-width: 500px;
-  margin: 0 auto;
+.login-card {
   background: var(--white);
-  padding: 36px;
-  border-radius: 12px;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+  border-radius: 16px;
+  padding: 40px 36px;
+  max-width: 440px;
+  width: 100%;
+  margin-top: 28px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
 }
-.form-group { margin-bottom: 18px; }
+.login-card h2 {
+  color: var(--deep-red);
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+.login-card .subtitle {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+.form-group { margin-bottom: 18px; text-align: left; }
 .form-group label {
   display: block;
   font-weight: bold;
@@ -262,10 +148,7 @@ section { padding: 60px 0; }
   font-family: inherit;
   transition: border-color 0.3s;
 }
-.form-group input:focus {
-  outline: none;
-  border-color: var(--saffron);
-}
+.form-group input:focus { outline: none; border-color: var(--saffron); }
 .submit-btn {
   width: 100%;
   padding: 14px;
@@ -279,196 +162,343 @@ section { padding: 60px 0; }
   transition: background 0.3s, transform 0.2s;
   font-family: inherit;
 }
-.submit-btn:hover {
-  background: var(--saffron-dark);
-  transform: scale(1.02);
-}
-.thank-you {
-  display: none;
+.submit-btn:hover { background: var(--saffron-dark); transform: scale(1.02); }
+.login-note {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin-top: 14px;
   text-align: center;
+}
+
+/* ── MAIN SITE (hidden until login) ── */
+#main-site { display: none; }
+
+/* Header */
+.site-header {
+  background: linear-gradient(135deg, var(--saffron) 0%, var(--deep-red) 100%);
   color: var(--white);
-  font-size: 1.2rem;
-  padding: 20px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 8px;
-  margin-top: 20px;
+  padding: 36px 20px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.site-header::before {
+  content: '';
+  position: absolute; top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+  animation: shimmer 6s infinite;
+}
+@keyframes shimmer {
+  0%, 100% { transform: translate(0,0); }
+  50%       { transform: translate(20px,10px); }
+}
+.site-header h1 {
+  font-size: 3.2rem; letter-spacing: 2px; position: relative;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
+.site-header .tagline {
+  font-size: 1.1rem; font-style: italic; margin-top: 6px;
+  position: relative; color: var(--turmeric-light); letter-spacing: 0.5px;
+}
+
+/* Nav */
+.nav-bar {
+  background: var(--dark); position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.nav-bar .container { display: flex; justify-content: center; flex-wrap: wrap; }
+.nav-bar a {
+  color: var(--turmeric); text-decoration: none; padding: 14px 20px;
+  font-size: 0.95rem; font-weight: bold; letter-spacing: 0.5px;
+  transition: background 0.25s, color 0.25s;
+}
+.nav-bar a:hover { background: var(--saffron); color: var(--white); }
+
+/* Hero */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.55)),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect fill="%23E8681C" width="400" height="200"/><circle cx="100" cy="100" r="60" fill="%23F5B717" opacity="0.5"/><circle cx="300" cy="100" r="70" fill="%23A31A1A" opacity="0.4"/><circle cx="200" cy="50" r="40" fill="%23FFD700" opacity="0.3"/></svg>');
+  background-size: cover; background-position: center;
+  color: var(--white); text-align: center; padding: 90px 20px;
+}
+.hero h2 { font-size: 2.6rem; margin-bottom: 14px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+.hero p  { font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.95; }
+.hero .btn {
+  display: inline-block; margin-top: 24px; padding: 12px 36px;
+  background: var(--saffron); color: var(--white); text-decoration: none;
+  border-radius: 30px; font-size: 1rem; font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+.hero .btn:hover { background: var(--saffron-dark); transform: scale(1.05); }
+
+/* Sections */
+section { padding: 60px 0; }
+.section-title {
+  text-align: center; font-size: 2rem; color: var(--deep-red);
+  margin-bottom: 36px; position: relative;
+}
+.section-title::after {
+  content: ''; display: block; width: 60px; height: 4px;
+  background: var(--saffron); margin: 10px auto 0; border-radius: 2px;
+}
+
+/* Menu */
+#menu { background: var(--white); }
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 12px; }
+.menu-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px; border-bottom: 1px dashed var(--turmeric-light);
+  transition: background 0.2s;
+}
+.menu-item:hover { background: var(--cream); }
+.menu-item .name  { font-weight: bold; font-size: 0.95rem; }
+.menu-item .price { color: var(--saffron); font-weight: bold; font-size: 1.05rem; white-space: nowrap; margin-left: 12px; }
+
+/* Gallery */
+#gallery { background: var(--cream); }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+.gallery-grid .card {
+  background: var(--white); border-radius: 10px; overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery-grid .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.14); }
+.gallery-grid img { width: 100%; height: 260px; object-fit: cover; display: block; }
+.gallery-grid .card p { padding: 12px 16px; font-weight: bold; color: var(--deep-red); text-align: center; font-size: 0.95rem; }
+
+/* Visit Us */
+#visitus { background: var(--white); }
+.visit-content { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+.visit-content img { width: 100%; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+.visit-info h3 { color: var(--deep-red); font-size: 1.4rem; margin-bottom: 10px; }
+.visit-info p  { color: var(--text-light); margin-bottom: 8px; font-size: 1rem; }
+
+/* IsmailTech Ad */
+.ismailtech-ad {
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0d0d2b 100%);
+  color: #fff; padding: 50px 20px; text-align: center; position: relative; overflow: hidden;
+}
+.ismailtech-ad::before {
+  content: ''; position: absolute; top: -60px; left: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%); border-radius: 50%;
+}
+.ismailtech-ad::after {
+  content: ''; position: absolute; bottom: -60px; right: -60px;
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(245,183,23,0.1) 0%, transparent 70%); border-radius: 50%;
+}
+.ismailtech-badge {
+  display: inline-block;
+  background: linear-gradient(90deg,#6366f1,#8b5cf6);
+  color: #fff; font-size: 0.72rem; font-weight: bold; letter-spacing: 2px;
+  text-transform: uppercase; padding: 5px 16px; border-radius: 20px; margin-bottom: 16px;
+}
+.ismailtech-ad .powered-by { font-size: 0.85rem; color: #a5b4fc; letter-spacing: 1px; margin-bottom: 6px; font-style: italic; }
+.ismailtech-ad h3 { font-size: 1.6rem; color: var(--turmeric); margin-bottom: 4px; letter-spacing: 0.5px; }
+.ismailtech-ad .founder-title { font-size: 0.9rem; color: #c4b5fd; margin-bottom: 22px; font-style: italic; }
+.ismailtech-divider { width: 50px; height: 3px; background: linear-gradient(90deg,#6366f1,var(--turmeric)); margin: 0 auto 22px; border-radius: 2px; }
+.ismailtech-ad .company-name { font-size: 1.25rem; font-weight: bold; color: #fff; letter-spacing: 1px; margin-bottom: 16px; }
+.ismailtech-ad .company-desc { font-size: 0.92rem; color: #cbd5e1; max-width: 720px; margin: 0 auto; line-height: 1.85; position: relative; z-index: 1; }
+.ismailtech-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; position: relative; z-index: 1; }
+.ismailtech-tags span {
+  background: rgba(99,102,241,0.18); border: 1px solid rgba(99,102,241,0.35);
+  color: #a5b4fc; font-size: 0.78rem; padding: 5px 14px; border-radius: 20px; letter-spacing: 0.3px;
 }
 
 /* Footer */
 .site-footer {
-  background: var(--dark);
-  color: var(--turmeric);
-  text-align: center;
-  padding: 24px 20px;
-  font-size: 1rem;
-  letter-spacing: 1px;
+  background: var(--dark); color: var(--turmeric);
+  text-align: center; padding: 24px 20px; font-size: 1rem; letter-spacing: 1px;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .site-header h1 { font-size: 2.2rem; }
-  .site-header .tagline { font-size: 0.9rem; }
+  .site-header h1, .login-logo h1 { font-size: 2.2rem; }
   .hero h2 { font-size: 1.8rem; }
-  .hero p { font-size: 1rem; }
   .nav-bar a { padding: 12px 14px; font-size: 0.85rem; }
   .visit-content { grid-template-columns: 1fr; }
   .menu-grid { grid-template-columns: 1fr; }
   .section-title { font-size: 1.6rem; }
+  .login-card { padding: 28px 20px; }
+  .ismailtech-ad h3 { font-size: 1.3rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- Header -->
-<header class="site-header">
-  <h1>Dosa.com</h1>
-  <p class="tagline">Traditional Special Recipes from South India</p>
-</header>
-
-<!-- Navigation -->
-<nav class="nav-bar">
-  <div class="container">
-    <a href="#home">Home</a>
-    <a href="#menu">Menu</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#visitus">Visit Us</a>
-    <a href="#register">Contact</a>
-  </div>
-</nav>
-
-<!-- Hero -->
-<section class="hero" id="home">
-  <h2>Welcome to Dosa.com</h2>
-  <p>Experience the authentic taste of South Indian tiffin — from crispy dosas to fluffy idlis, every bite tells a story of tradition.</p>
-  <a href="#menu" class="btn">Explore Our Menu</a>
-</section>
-
-<!-- Menu -->
-<section id="menu">
-  <div class="container">
-    <h2 class="section-title">Our Menu</h2>
-    <div class="menu-grid">
-      <div class="menu-item"><span class="name">Water Bottle</span><span class="price">&#8377;10</span></div>
-      <div class="menu-item"><span class="name">Rava Kesari (Sweet)</span><span class="price">&#8377;20</span></div>
-      <div class="menu-item"><span class="name">Baby Plain Dosa</span><span class="price">&#8377;30</span></div>
-      <div class="menu-item"><span class="name">Aloo Dosa</span><span class="price">&#8377;40</span></div>
-      <div class="menu-item"><span class="name">Masala Dosa</span><span class="price">&#8377;50</span></div>
-      <div class="menu-item"><span class="name">Idli (4 piece)</span><span class="price">&#8377;50</span></div>
-      <div class="menu-item"><span class="name">Wada (2 piece)</span><span class="price">&#8377;50</span></div>
-      <div class="menu-item"><span class="name">Upma</span><span class="price">&#8377;50</span></div>
-      <div class="menu-item"><span class="name">Mysore Bhajji (4 piece)</span><span class="price">&#8377;50</span></div>
-      <div class="menu-item"><span class="name">Onion Dosa</span><span class="price">&#8377;60</span></div>
-      <div class="menu-item"><span class="name">Thin Onion Uttapam</span><span class="price">&#8377;60</span></div>
-      <div class="menu-item"><span class="name">Butter Dosa</span><span class="price">&#8377;70</span></div>
-      <div class="menu-item"><span class="name">Chole Puri</span><span class="price">&#8377;70</span></div>
-      <div class="menu-item"><span class="name">Ghee Karam Idli</span><span class="price">&#8377;70</span></div>
-      <div class="menu-item"><span class="name">Ghee Karam Dosa</span><span class="price">&#8377;70</span></div>
-      <div class="menu-item"><span class="name">Dosa.com Spl. Dosa</span><span class="price">&#8377;80</span></div>
-      <div class="menu-item"><span class="name">Dosa.com Spl. Combo</span><span class="price">&#8377;99</span></div>
+<!-- ── FIXED TICKER (always visible) ── -->
+<div class="ticker-wrap">
+  <div class="ticker-label">🍽️ DOSA.COM</div>
+  <div class="ticker-content">
+    <div class="ticker-text">
+      <span>This site is designed and developed by Hakeem Sabri</span>
+      <span>Welcome to Dosa.com — Traditional Special Recipes from South India</span>
+      <span>This site is designed and developed by Hakeem Sabri</span>
+      <span>Authentic South Indian Tiffin | Hyderabad | Open 5 PM – 12 AM</span>
+      <span>This site is designed and developed by Hakeem Sabri</span>
+      <span>Try our Special Dosa.com Combo at just ₹99!</span>
     </div>
   </div>
-</section>
+</div>
 
-<!-- Gallery -->
-<section id="gallery">
-  <div class="container">
-    <h2 class="section-title">Gallery</h2>
-    <div class="gallery-grid">
-      <div class="card">
-        <img src="Address.jpeg" alt="Our Address" loading="lazy">
-        <p>Our Address</p>
+<!-- ══════════════════════════════════
+     LOGIN GATE — shown first to all
+     ══════════════════════════════════ -->
+<div id="login-gate">
+  <div class="login-logo">
+    <h1>Dosa.com</h1>
+    <p>Traditional Special Recipes from South India</p>
+  </div>
+
+  <div class="login-card">
+    <h2>Welcome! 👋</h2>
+    <p class="subtitle">Please enter your details to explore our menu &amp; offers</p>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter your full name" required>
       </div>
-      <div class="card">
-        <img src="Menu.jpeg" alt="Menu Display" loading="lazy">
-        <p>Menu Display</p>
+      <div class="form-group">
+        <label for="contact">Email OR Phone Number</label>
+        <input type="text" id="contact" placeholder="Enter email or phone number" required>
       </div>
-      <div class="card">
-        <img src="Visitus.jpeg" alt="Visit Us" loading="lazy">
-        <p>Visit Us</p>
+      <button type="submit" class="submit-btn">Enter Website →</button>
+    </form>
+    <p class="login-note">🔒 Your details are safe and used only to serve you better.</p>
+  </div>
+
+  <!-- IsmailTech Ad visible on login page too -->
+  <div style="max-width:680px;width:100%;margin-top:36px;background:rgba(0,0,0,0.25);border-radius:14px;padding:28px 24px;text-align:center;">
+    <div class="ismailtech-badge">✦ Powered By ✦</div>
+    <p style="font-size:0.82rem;color:#fce9c8;font-style:italic;margin-bottom:4px;">This website was empowered by</p>
+    <p style="font-size:1.3rem;font-weight:bold;color:var(--turmeric);margin-bottom:2px;">Hakeem Hunani</p>
+    <p style="font-size:0.82rem;color:#fce9c8;font-style:italic;margin-bottom:14px;">Founder &amp; CEO — IsmailTech Solutions <em>(Upcoming)</em></p>
+    <p style="font-size:0.82rem;color:#ffe8cc;line-height:1.7;">At IsmailTech Solutions, we partner with businesses to streamline complex processes and apply advanced software automation to rapidly assemble tailored business solutions.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     MAIN SITE — unlocked after login
+     ══════════════════════════════════ -->
+<div id="main-site">
+
+  <header class="site-header">
+    <h1>Dosa.com</h1>
+    <p class="tagline">Traditional Special Recipes from South India</p>
+  </header>
+
+  <nav class="nav-bar">
+    <div class="container">
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visitus">Visit Us</a>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <h2>Welcome to Dosa.com</h2>
+    <p>Experience the authentic taste of South Indian tiffin — from crispy dosas to fluffy idlis, every bite tells a story of tradition.</p>
+    <a href="#menu" class="btn">Explore Our Menu</a>
+  </section>
+
+  <section id="menu">
+    <div class="container">
+      <h2 class="section-title">Our Menu</h2>
+      <div class="menu-grid">
+        <div class="menu-item"><span class="name">Water Bottle</span><span class="price">&#8377;10</span></div>
+        <div class="menu-item"><span class="name">Rava Kesari (Sweet)</span><span class="price">&#8377;20</span></div>
+        <div class="menu-item"><span class="name">Baby Plain Dosa</span><span class="price">&#8377;30</span></div>
+        <div class="menu-item"><span class="name">Aloo Dosa</span><span class="price">&#8377;40</span></div>
+        <div class="menu-item"><span class="name">Masala Dosa</span><span class="price">&#8377;50</span></div>
+        <div class="menu-item"><span class="name">Idli (4 piece)</span><span class="price">&#8377;50</span></div>
+        <div class="menu-item"><span class="name">Wada (2 piece)</span><span class="price">&#8377;50</span></div>
+        <div class="menu-item"><span class="name">Upma</span><span class="price">&#8377;50</span></div>
+        <div class="menu-item"><span class="name">Mysore Bhajji (4 piece)</span><span class="price">&#8377;50</span></div>
+        <div class="menu-item"><span class="name">Onion Dosa</span><span class="price">&#8377;60</span></div>
+        <div class="menu-item"><span class="name">Thin Onion Uttapam</span><span class="price">&#8377;60</span></div>
+        <div class="menu-item"><span class="name">Butter Dosa</span><span class="price">&#8377;70</span></div>
+        <div class="menu-item"><span class="name">Chole Puri</span><span class="price">&#8377;70</span></div>
+        <div class="menu-item"><span class="name">Ghee Karam Idli</span><span class="price">&#8377;70</span></div>
+        <div class="menu-item"><span class="name">Ghee Karam Dosa</span><span class="price">&#8377;70</span></div>
+        <div class="menu-item"><span class="name">Dosa.com Spl. Dosa</span><span class="price">&#8377;80</span></div>
+        <div class="menu-item"><span class="name">Dosa.com Spl. Combo</span><span class="price">&#8377;99</span></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Visit Us -->
-<section id="visitus">
-  <div class="container">
-    <h2 class="section-title">Visit Us</h2>
-    <div class="visit-content">
-      <img src="Visitus.jpeg" alt="Visit Dosa.com in Hyderabad" loading="lazy">
-      <div class="visit-info">
-        <h3>Dosa.com</h3>
-        <p><strong>Location:</strong> Hyderabad, Telangana</p>
-        <p><strong>Specialty:</strong> Authentic South Indian Tiffin</p>
-        <p><strong>Timings:</strong> 7:00 AM – 10:00 PM (Open All Days)</p>
-        <p>Come visit us for the finest dosas, idlis, wadas, and more — made fresh with traditional recipes passed down through generations.</p>
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery-grid">
+        <div class="card"><img src="Address.jpeg" alt="Our Address" loading="lazy"><p>Our Address</p></div>
+        <div class="card"><img src="Menu.jpeg" alt="Menu Display" loading="lazy"><p>Menu Display</p></div>
+        <div class="card"><img src="Visitus.jpeg" alt="Visit Us" loading="lazy"><p>Visit Us</p></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Register / Login -->
-<section id="register">
-  <div class="container">
-    <h2 class="section-title">Register / Login</h2>
-    <div class="form-card" id="formCard">
-      <form id="registerForm">
-        <div class="form-group">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="name" placeholder="Enter your full name" required>
+  <section id="visitus">
+    <div class="container">
+      <h2 class="section-title">Visit Us</h2>
+      <div class="visit-content">
+        <img src="Visitus.jpeg" alt="Visit Dosa.com in Hyderabad" loading="lazy">
+        <div class="visit-info">
+          <h3>Dosa.com</h3>
+          <p><strong>Location:</strong> Hyderabad, Telangana</p>
+          <p><strong>Specialty:</strong> Authentic South Indian Tiffin</p>
+          <p><strong>Timings:</strong> 5:00 PM – 12:00 AM (Midnight), All Days</p>
+          <p>Come visit us for the finest dosas, idlis, wadas, and more — made fresh with traditional recipes passed down through generations.</p>
         </div>
-        <div class="form-group">
-          <label for="contact">Email OR Phone Number</label>
-          <input type="text" id="contact" name="contact" placeholder="Enter email or phone number" required>
-        </div>
-        <button type="submit" class="submit-btn">Submit</button>
-      </form>
+      </div>
     </div>
-    <div class="thank-you" id="thankYouMsg">
-      &#10004; Thank you for registering! We'll get in touch soon.
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- Footer -->
-<footer class="site-footer">
-  Thank You &nbsp;|&nbsp; Visit Again &nbsp;|&nbsp; Dosa.com
-</footer>
+  <section class="ismailtech-ad">
+    <div class="ismailtech-badge">✦ Powered By ✦</div>
+    <p class="powered-by">This website was empowered by</p>
+    <h3>Hakeem Hunani</h3>
+    <p class="founder-title">Founder &amp; CEO — IsmailTech Solutions <em>(Upcoming)</em></p>
+    <div class="ismailtech-divider"></div>
+    <p class="company-name">IsmailTech Solutions</p>
+    <p class="company-desc">At IsmailTech Solutions, we partner with businesses to streamline complex processes and apply advanced software automation to rapidly assemble tailored business solutions. By leveraging our automated workflows, custom applications, and performance websites, clients unlock the efficiency needed to scale effortlessly and respond to ever-changing market demands. From building high-impact digital foundations to deploying integrated AI chatbots, we deliver the intelligent tools small and growing businesses need to automate operations and accelerate growth.</p>
+    <div class="ismailtech-tags">
+      <span>⚡ Software Automation</span>
+      <span>🤖 AI Chatbots</span>
+      <span>🌐 Performance Websites</span>
+      <span>📊 Custom Applications</span>
+      <span>🚀 Business Growth</span>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Thank You &nbsp;|&nbsp; Visit Again &nbsp;|&nbsp; Dosa.com
+  </footer>
+
+</div><!-- end #main-site -->
 
 <script>
-document.getElementById('registerForm').addEventListener('submit', function(e) {
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzBh6w0oMUzrkITLbaIAlwBNSc_sFJe573JjNzFgBRVTWBDkENc7i9I917NaAdJDHXD/exec';
+
+document.getElementById('loginForm').addEventListener('submit', function(e) {
   e.preventDefault();
-
-  var form = this;
-  var name = document.getElementById('fullName').value.trim();
+  var name    = document.getElementById('fullName').value.trim();
   var contact = document.getElementById('contact').value.trim();
+  if (!name || !contact) return;
 
-  var data = {
-    name: name,
-    contact: contact
-  };
-
-  var scriptUrl = https://script.google.com/macros/s/AKfycbzBh6w0oMUzrkITLbaIAlwBNSc_sFJe573JjNzFgBRVTWBDkENc7i9I917NaAdJDHXD/exec;
-
-  fetch(scriptUrl, {
+  // Send to Google Sheets
+  fetch(SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-  .then(function() {
-    document.getElementById('formCard').style.display = 'none';
-    document.getElementById('thankYouMsg').style.display = 'block';
-    form.reset();
-  })
-  .catch(function() {
-    // Still show thank you even if fetch fails (demo purposes)
-    document.getElementById('formCard').style.display = 'none';
-    document.getElementById('thankYouMsg').style.display = 'block';
-    form.reset();
-  });
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name, contact: contact })
+  }).catch(function(){});
+
+  // Unlock the site regardless
+  document.getElementById('login-gate').style.display = 'none';
+  document.getElementById('main-site').style.display  = 'block';
+  window.scrollTo(0, 0);
 });
 </script>
 
